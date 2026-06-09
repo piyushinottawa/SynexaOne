@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import pool from "@/lib/db";
 
 export default async function InventoryPage() {
@@ -16,7 +18,7 @@ export default async function InventoryPage() {
       </h1>
 
       <p className="text-gray-600 mb-6">
-        CellChem Pharma inventory records connected to AWS RDS PostgreSQL.
+        Inventory records connected to AWS RDS PostgreSQL.
       </p>
 
       <div className="bg-white rounded-xl shadow border overflow-hidden">
