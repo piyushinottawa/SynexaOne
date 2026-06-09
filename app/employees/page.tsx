@@ -1,5 +1,5 @@
 async function getEmployees() {
-  const res = await fetch("/api/employee-details"), {
+  const res = await fetch("/api/employee-details", {
     cache: "no-store",
   });
 

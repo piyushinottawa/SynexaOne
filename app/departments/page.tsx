@@ -1,5 +1,5 @@
 async function getDepartments() {
-  const res = await fetch("/api/departments"), {
+  const res = await fetch("/api/departments", {
     cache: "no-store",
   });
 

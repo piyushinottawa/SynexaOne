@@ -5,11 +5,3 @@ export function getBaseUrl() {
 
   return "";
 }
-import { getBaseUrl } from "@/lib/api";
-
-const res = await fetch(
-  `${getBaseUrl()}/api/dashboard`,
-  {
-    cache: "no-store",
-  }
-);

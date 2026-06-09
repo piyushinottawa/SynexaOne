@@ -1,20 +1,20 @@
 import { NextResponse } from "next/server";
-import sql from "@/lib/db";
+import pool from "@/lib/db";
 
 export async function GET() {
   try {
-    const suppliers = await sql`
+    const result = await pool.query(`
       SELECT *
-      FROM suppliers
-      ORDER BY supplier_id DESC
-    `;
+      FROM products
+      ORDER BY id DESC
+    `);
 
-    return NextResponse.json(suppliers);
+    return NextResponse.json(result.rows);
   } catch (error) {
-    console.error("Suppliers GET error:", error);
+    console.error("Products GET error:", error);
 
     return NextResponse.json(
-      { error: "Failed to fetch suppliers" },
+      { error: String(error) },
       { status: 500 }
     );
   }

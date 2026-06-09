@@ -1,5 +1,5 @@
 async function getDocuments() {
-  const res = await fetch("/api/documents"), {
+  const res = await fetch("/api/documents", {
     cache: "no-store",
   });
 
