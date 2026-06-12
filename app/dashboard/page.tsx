@@ -1,122 +1,45 @@
-type DashboardData = {
-  organizations: number;
-  users: number;
-  customers: number;
-  suppliers: number;
-  products: number;
-  inventory_items: number;
-  warehouses: number;
-  purchase_orders: number;
-  sales_orders: number;
-  documents: number;
-};
-
-async function getDashboardData(): Promise<DashboardData> {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/dashboard`, {
-    cache: "no-store",
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch dashboard data");
-  }
-
-  return res.json();
-}
-
-export default async function DashboardPage() {
-  const data = await getDashboardData();
-
-  const cards = [
-    { title: "Organizations", value: data.organizations },
-    { title: "Users", value: data.users },
-    { title: "Customers", value: data.customers },
-    { title: "Suppliers", value: data.suppliers },
-    { title: "Products", value: data.products },
-    { title: "Inventory Items", value: data.inventory_items },
-    { title: "Warehouses", value: data.warehouses },
-    { title: "Purchase Orders", value: data.purchase_orders },
-    { title: "Sales Orders", value: data.sales_orders },
-    { title: "Documents", value: data.documents },
-  ];
-
+export default function DashboardPage() {
   return (
-    <main className="min-h-screen bg-gray-50 p-8">
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold text-gray-900">
-          SynexaOne Dashboard
-        </h1>
-        <p className="mt-2 text-gray-600">
-          Customer Relationship Management, Supply Chain Management, and
-          Document Management System overview.
+    <main className="min-h-screen bg-slate-950 text-white p-8">
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-4xl font-bold mb-2">SynexaOne Dashboard</h1>
+        <p className="text-slate-400 mb-10">
+          Welcome to your unified CRM, SCM, and DMS workspace.
         </p>
+
+        <div className="grid md:grid-cols-3 gap-6 mb-10">
+          <a href="/customers" className="bg-slate-900 border border-slate-800 rounded-xl p-6 hover:border-blue-500">
+            <h2 className="text-2xl font-bold text-blue-400">CRM</h2>
+            <p className="text-slate-400 mt-2">Customers, contacts, opportunities, and activities.</p>
+          </a>
+
+          <a href="/inventory" className="bg-slate-900 border border-slate-800 rounded-xl p-6 hover:border-blue-500">
+            <h2 className="text-2xl font-bold text-green-400">SCM</h2>
+            <p className="text-slate-400 mt-2">Inventory, suppliers, procurement, and shipments.</p>
+          </a>
+
+          <a href="/documents" className="bg-slate-900 border border-slate-800 rounded-xl p-6 hover:border-blue-500">
+            <h2 className="text-2xl font-bold text-purple-400">DMS</h2>
+            <p className="text-slate-400 mt-2">Documents, records, search, and audit trail.</p>
+          </a>
+        </div>
+
+        <section className="grid md:grid-cols-2 gap-6">
+          <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
+            <h3 className="text-xl font-semibold mb-4">Recent Activity</h3>
+            <ul className="space-y-3 text-slate-400">
+              <li>System initialized</li>
+              <li>CRM, SCM, and DMS modules available</li>
+              <li>Dashboard workspace ready</li>
+            </ul>
+          </div>
+
+          <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
+            <h3 className="text-xl font-semibold mb-4">Notifications</h3>
+            <p className="text-slate-400">No new notifications.</p>
+          </div>
+        </section>
       </div>
-
-      <section className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
-        {cards.map((card) => (
-          <div
-            key={card.title}
-            className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm"
-          >
-            <p className="text-sm font-medium text-gray-500">{card.title}</p>
-            <p className="mt-3 text-3xl font-bold text-gray-900">
-              {card.value}
-            </p>
-          </div>
-        ))}
-      </section>
-
-      <section className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
-        <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-          <h2 className="text-xl font-semibold text-gray-900">
-            Customer Relationship Management
-          </h2>
-          <p className="mt-2 text-gray-600">
-            Manage organizations, customers, suppliers, users, and business
-            relationships.
-          </p>
-          <div className="mt-4 text-sm text-gray-700">
-            Customers: {data.customers}
-            <br />
-            Suppliers: {data.suppliers}
-            <br />
-            Organizations: {data.organizations}
-          </div>
-        </div>
-
-        <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-          <h2 className="text-xl font-semibold text-gray-900">
-            Supply Chain Management
-          </h2>
-          <p className="mt-2 text-gray-600">
-            Track products, warehouses, inventory, purchase orders, and sales
-            orders.
-          </p>
-          <div className="mt-4 text-sm text-gray-700">
-            Products: {data.products}
-            <br />
-            Inventory Items: {data.inventory_items}
-            <br />
-            Warehouses: {data.warehouses}
-          </div>
-        </div>
-
-        <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-          <h2 className="text-xl font-semibold text-gray-900">
-            Document Management System
-          </h2>
-          <p className="mt-2 text-gray-600">
-            Store, manage, search, and protect business documents with audit
-            visibility.
-          </p>
-          <div className="mt-4 text-sm text-gray-700">
-            Documents: {data.documents}
-            <br />
-            Users: {data.users}
-            <br />
-            Active Modules: 3
-          </div>
-        </div>
-      </section>
     </main>
   );
 }
