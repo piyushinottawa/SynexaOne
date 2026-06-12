@@ -1,50 +1,60 @@
-async function getDocuments() {
-  const res = await fetch("/api/documents", {
-    cache: "no-store",
-  });
+import Navigation from "@/components/Navigation";
 
-  return res.json();
-}
-
-export default async function DocumentsPage() {
-  const documents = await getDocuments();
-
+export default function DocumentsPage() {
   return (
-    <main className="min-h-screen bg-gray-50 p-8">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">
-        SynexaOne Documents
-      </h1>
+    <>
+      <Navigation />
 
-      <p className="text-gray-600 mb-6">
-        Document Content Management records connected to AWS RDS PostgreSQL.
-      </p>
+      <main className="min-h-screen bg-slate-950 text-white p-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex justify-between items-center mb-8">
+            <div>
+              <h1 className="text-4xl font-bold">Documents</h1>
+              <p className="text-slate-400 mt-2">
+                Manage business documents, records, and files.
+              </p>
+            </div>
 
-      <div className="bg-white rounded-xl shadow border overflow-hidden">
-        <table className="w-full text-left">
-          <thead className="bg-gray-100">
-            <tr>
-              <th className="p-4">ID</th>
-              <th className="p-4">Document Name</th>
-              <th className="p-4">Type</th>
-              <th className="p-4">Department</th>
-              <th className="p-4">Owner</th>
-              <th className="p-4">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {documents.map((document: any) => (
-              <tr key={document.id} className="border-t">
-                <td className="p-4">{document.id}</td>
-                <td className="p-4 font-medium">{document.document_name}</td>
-                <td className="p-4">{document.document_type}</td>
-                <td className="p-4">{document.department_name}</td>
-                <td className="p-4">{document.owner_name}</td>
-                <td className="p-4">{document.status}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </main>
+            <button className="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg">
+              + Upload Document
+            </button>
+          </div>
+
+          <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 mb-6">
+            <input
+              type="text"
+              placeholder="Search documents..."
+              className="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-3 text-white"
+            />
+          </div>
+
+          <div className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden">
+            <table className="w-full">
+              <thead className="bg-slate-800">
+                <tr>
+                  <th className="text-left p-4">Document Name</th>
+                  <th className="text-left p-4">Type</th>
+                  <th className="text-left p-4">Owner</th>
+                  <th className="text-left p-4">Status</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr className="border-t border-slate-800">
+                  <td className="p-4">No documents available</td>
+                  <td className="p-4">-</td>
+                  <td className="p-4">-</td>
+                  <td className="p-4">
+                    <span className="bg-slate-700 px-2 py-1 rounded">
+                      Empty
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </>
   );
 }
