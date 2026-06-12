@@ -57,7 +57,7 @@ export default function Home() {
         </div>
 
         <p className="mt-8 text-sm text-slate-400">
-          Secure • Scalable • Multi-Tenant • AWS Cloud Native
+          Secure • Scalable • Multi-Tenant • Cloud Native
         </p>
       </section>
 
@@ -145,7 +145,7 @@ export default function Home() {
         <p className="text-slate-300 mb-8">
           Discover how SynexaOne can improve efficiency, collaboration, and operational visibility.
         </p>
-        <a href="mailto:info@synexaone.com" className="px-8 py-3 rounded-lg bg-blue-600 font-semibold">
+        <a href="mailto:info@ottawait.net" className="px-8 py-3 rounded-lg bg-blue-600 font-semibold">
           Request a Demo
         </a>
       </section>
@@ -154,7 +154,17 @@ export default function Home() {
         <p className="font-bold text-white">SYNEXAONE</p>
         <p>One Platform. Multiple Industries. Infinite Possibilities.</p>
         <p className="mt-2">CRM • SCM • DMS</p>
-        <p className="mt-2">© 2026 SynexaOne • Powered by AWS</p>
+        <p className="mt-2">
+  © 2026 SynexaOne • Developed by{" "}
+  <a
+    href="https://www.ottawait.net"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="font-medium hover:underline"
+  >
+    OttawaIT
+  </a>
+</p>
       </footer>
     </main>
   );
